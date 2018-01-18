@@ -232,6 +232,10 @@ section{
     border-bottom:1px solid {color:line};
 }
 
+.de{
+    margin-bottom:5px;
+}
+
 .schedule, .affiliates, .disclaimer{
     background:{color:posts};
     text-transform:uppercase;
@@ -433,6 +437,12 @@ ol.notes li.note img.avatar {
         display:block;
     }
     
+    .bar{
+        position:sticky;
+        position:-webkit-sticky;
+        top:0;
+    }
+    
     .links{
         width:calc(100% - 190px);
     }
@@ -441,12 +451,14 @@ ol.notes li.note img.avatar {
         right:40px;
     }
     
-    .blogtitle, .desc{
+    .blogtitle, .de{
         display:none;
     }
     
-    .schedule{
+    .details{
         border-top:1px solid {color:line};
+        padding-top:10px;
+        margin-top:-10px;
     }
     
     .sideimg{
@@ -515,7 +527,7 @@ ol.notes li.note img.avatar {
 </div>
 <img src="{image:header}">
 </div>
-<div class="bar"><div class="links"><a href="\">home</a><a href="\ask">ask</a><a href="\archive">archive</a><a href="{text:link 1 url}">{text:link 1}</a><a href="{text:link 2 url}">{text:link 2}</a><a href="{text:link 3 url}">{text:link 3}</a><a href="{text:link 4 url}">{text:link 4}</a><a href="{text:link 5 url}">{text:link 5}</a><a href="{text:link 6 url}">{text:link 6}</a><a href="{text:link 7 url}">{text:link 7}</a></div>
+<div class="bar"><div class="links"><a href="\">home</a><a href="\ask">contact</a><a href="\archive">archive</a><a href="{text:link 1 url}">{text:link 1}</a><a href="{text:link 2 url}">{text:link 2}</a><a href="{text:link 3 url}">{text:link 3}</a><a href="{text:link 4 url}">{text:link 4}</a><a href="{text:link 5 url}">{text:link 5}</a><a href="{text:link 6 url}">{text:link 6}</a><a href="{text:link 7 url}">{text:link 7}</a></div>
 <form action="/search" method="get"><input type="text" placeholder="Search..." name="q" value="{SearchQuery}" /></form>
 </div>
 
@@ -524,7 +536,11 @@ ol.notes li.note img.avatar {
 <div class="sideimg"><img src="{image:side}"></div>
 <aside class="side">
 <div class="blogtitle">{Title}</div>
-<div class="desc">{Description}</div>
+<div class="desc"><div class="de">{Description}</div><div class="details">
+&nbsp;&nbsp;» &nbsp;2x World Bronze Medalist (2016, 2017)<br>
+&nbsp;&nbsp;» &nbsp;4CC Silver Medalist 2016<br>
+&nbsp;&nbsp;» &nbsp;AWG Silver Medalist 2017<br>
+&nbsp;&nbsp;» &nbsp;4x Chinese National Champion (2014-2017)</div></div>
 <div class="schedule">schedule
 <div class="event"><span class="tag">{text:date 1}</span>{text:event 1}</div>
 <div class="event"><span class="tag">{text:date 2}</span>{text:event 2}</div>

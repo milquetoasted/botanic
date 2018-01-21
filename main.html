@@ -52,21 +52,34 @@
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
 <style type="text/css">
 
-::-webkit-scrollbar {
-    width:2px;
-    height:2px;
+::-webkit-scrollbar{
+    width:6px;
+    height:6px;
     background:inherit;
 }
 
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb{
+    width:2px;
+    height:2px;
+    border:2px solid {color:posts};
+    background-clip:padding-box;
     background:{color:header};
+}
+
+html{
+    margin:0;
+    padding:0;
+    border:0;
 }
 
 body{
     margin:0;
     padding:0;
+    border:0;
     word-wrap:break-word;
     font-family:'Source Sans Pro', sans-serif;
     font-size:12px;
@@ -74,8 +87,8 @@ body{
     text-align:justify;
     line-height:120%;
     background:{color:background};
-    overflow-x:hidden;
 }
+
 small{
     font-size:11px;
 }
@@ -100,6 +113,7 @@ a:hover{
     position:relative;
     margin-bottom:-5px;
     width:100%;
+    height:auto;
 }
 
 .head img{
@@ -109,43 +123,38 @@ a:hover{
 .box{
     position:absolute;
     text-align:center;
-    width:300px;;
-    left:calc(50% - 180px);
-    top:35%;
+    width:250px;
+    max-width:100%;
+    left:calc(50% - 155px);
+    top:calc(50% - 50px);
     z-index:99;
     background:rgba(250, 250, 250, 0.8);
-    padding:15px 30px;
+    padding:30px;
 }
 
 .bti{
-    font-family:consolas, monospace;
-    font-size:16px;
+    font-size:25px;
     text-transform:uppercase;
     margin-bottom:5px;
-    letter-spacing:2px;
+    letter-spacing:10px;
     color:{color:text};
     padding-bottom:10px;
-    border-bottom:1px solid {color:text};
 }
 
 .bar{
-    font-family:consolas, monospace;
     position:sticky;
     position:-webkit-sticky;
     top:0;
-    margin:0;
     margin:0 auto;
     width:calc(100% - 60px);
     height:15px;
     z-index:9999!important;
-    font-size:12px;
     line-height:15px;
     text-transform:uppercase;
     letter-spacing:2px;
     padding:15px 30px;
     color:{color:topnav};
     background:{color:header};
-    overflow:hidden;
 }
 .bar a{
     display:inline-block;
@@ -157,24 +166,25 @@ a:hover{
 }
 .bar a:hover{
     border-bottom:1px solid {color:topnav};
+    opacity:0.5;
 }
 
 .links{
-    width:calc(100% - 350px);
+    width:calc(100% - 180px);
 }
 
 .bar input[type=text]{
     position:absolute;
     top:12px;
-    right:200px;
+    right:30px;
     width:150px;
-    font-family:consolas, monospace;
     border:none;
-    font-size:12px;
+    font:inherit;
     text-transform:uppercase;
+    text-align:right;
     line-height:15px;
     padding:3px 10px;
-    background:{color:search};
+    background:none;
     color:{color:topnav};
 }
 
@@ -182,8 +192,22 @@ input::placeholder{
     color:{color:topnav};
     letter-spacing:2px;
 }
+
 input:focus{
     outline:none;
+}
+
+.searchbutton, .menubutton{
+    position:absolute;
+    right:15px;
+    top:15px;
+    font-size:15px;
+    line-height:15px;
+    width:15px;
+    display:none;
+}
+.menubutton{
+    left:15px;
 }
 
 section{
@@ -239,13 +263,11 @@ section{
 .schedule, .affiliates, .disclaimer{
     background:{color:posts};
     text-transform:uppercase;
-    font-family:consolas, monospace;
     letter-spacing:1px;
     padding:10px 0;
     border-bottom:1px solid {color:line};
 }
 .event, .dtext{
-    font-family:'Source Sans Pro', sans-serif;
     letter-spacing:0px;
     text-transform:none;
 }
@@ -269,9 +291,9 @@ section{
     margin:5px 0;
 }
 .aicons a{
-    margin-right:9px;
+    margin-right:8px;
 }
-.aicons a:last-of-type{
+.aicons:last-child{
     margin-right:0;
 }
 
@@ -391,6 +413,10 @@ ol.chat{
 .tags a{
     display:inline-block;
     color:{color:tags};
+    margin-left:7px;
+}
+.tags:first-child{
+    margin-left:0;
 }
 
 .tagti{
@@ -432,6 +458,11 @@ ol.notes li.note img.avatar {
     display:none;
 }
 
+@media screen and (min-width:850px){
+    .mid{ display:none!important; }
+    .links, .bar input{ display:block!important; }
+}
+
 @media screen and (max-width:850px){
     .head{
         display:block;
@@ -441,14 +472,8 @@ ol.notes li.note img.avatar {
         position:sticky;
         position:-webkit-sticky;
         top:0;
-    }
-    
-    .links{
-        width:calc(100% - 190px);
-    }
-    
-    .bar input[type=text]{
-        right:40px;
+        height:auto;
+        min-height:15px;
     }
     
     .blogtitle, .de{
@@ -467,6 +492,8 @@ ol.notes li.note img.avatar {
     
     .side{
         {block:PermalinkPage}display:none;{/block:PermalinkPage}
+        {block:TagPage}display:none;{/block:TagPage}
+        {block:SearchPage}display:none;{/block:SearchPage}
         position:relative;
         width:500px;
         max-width:calc(100% - 30px);
@@ -496,16 +523,47 @@ ol.notes li.note img.avatar {
     .pagi{
         margin:0 auto;
     }
-}
-
-@media screen and (max-width:520px){
-    .links{
-        width:100%;
+    
+    .links, .bar input[type=text]{
         text-align:center;
+        display:none;
     }
     
+    .links{
+        width:100%;
+        margin-top:20px;
+    }
+    .links a{
+        width:100%;
+        margin:0;
+        padding:10px 0 0 0;
+        border-bottom:none;
+    }
+    .links a:hover{ border-bottom:none; }
+    
     .bar input[type=text]{
-        display:none;
+        width:calc(100% - 90px);
+        left:45px;
+        top:15px;
+        margin:0;
+        padding:0;
+    }
+    
+    .searchbutton, .menubutton{
+        display:block;
+        cursor:pointer;
+    }
+    
+    .mid{
+        color:{color:topnav};
+        position:fixed;
+        font-size:16px;
+        letter-spacing:5px;
+        text-align:center;
+        width:80%;
+        left:10%;
+        top:15px;
+        z-index:99999;
     }
 }
 
@@ -513,23 +571,29 @@ ol.notes li.note img.avatar {
     z-index:9999999!important;
     white-space:nowrap;
     position:fixed;
-    top:-5px!important;
+    top:45px!important;
+    right:-20px!important;
     transform:scale(0.8,0.8);
+    
 }
+
 </style>
 </head>
 
 <body>
 
 <div class="head">
+<img src="{image:header}">
 <div class="box"><div class="bti">{Title}</div>
 {Description}
 </div>
-<img src="{image:header}">
 </div>
-<div class="bar"><div class="links"><a href="\">home</a><a href="\ask">contact</a><a href="\archive">archive</a><a href="{text:link 1 url}">{text:link 1}</a><a href="{text:link 2 url}">{text:link 2}</a><a href="{text:link 3 url}">{text:link 3}</a><a href="{text:link 4 url}">{text:link 4}</a><a href="{text:link 5 url}">{text:link 5}</a><a href="{text:link 6 url}">{text:link 6}</a><a href="{text:link 7 url}">{text:link 7}</a></div>
-<form action="/search" method="get"><input type="text" placeholder="Search..." name="q" value="{SearchQuery}" /></form>
+
+<div class="bar">
+<div class="menubutton"><span class="lnr lnr-menu"></span></div><div class="links"><a href="\">home</a><a href="\ask">contact</a><a href="\archive">archive</a><a href="{text:link 1 url}">{text:link 1}</a><a href="{text:link 2 url}">{text:link 2}</a><a href="{text:link 3 url}">{text:link 3}</a><a href="{text:link 4 url}">{text:link 4}</a><a href="{text:link 5 url}">{text:link 5}</a><a href="{text:link 6 url}">{text:link 6}</a><a href="{text:link 7 url}">{text:link 7}</a></div>
+<form action="/search" method="get"><input type="text" placeholder="Search..." name="q" value="{SearchQuery}" /></form><div class="searchbutton"><span class="lnr lnr-magnifier"></span></div>
 </div>
+<div class="mid">{Title}</div>
 
 <section>
 
@@ -641,6 +705,42 @@ width=“{LogoWidth}” height=“{LogoHeight}” alt=“{SourceTitle}” />
 <div class="pagi">
 {block:PreviousPage}<a href="{PreviousPage}">&#171; previous</a>{block:NextPage} / {/block:NextPage}{/block:PreviousPage}{block:NextPage}<a href="{NextPage}">next &#187;</a>{/block:NextPage}</div>
 </section>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function(){
+    $(".searchbutton").click(function(){
+        $("input").toggle();
+        $(".links").slideUp();
+    });
+    $(".menubutton").click(function(){
+        $(".links").slideToggle();
+        $("input").hide();
+    });
+    $("section").click(function(){
+        $(".links").slideUp();
+    })
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    $(".mid").hide();
+    $(window).scroll(function(){
+        var h = $(".head img").height();
+        var s = $(window).scrollTop();
+        if (s > h){
+            $(".mid").slideDown();
+        }
+        else{
+            $(".mid").slideUp(10);
+        }
+    });
+});
+
+</script>
     
 </body>
 

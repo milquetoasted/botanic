@@ -11,23 +11,30 @@
 
 <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
 <style type="text/css">
 
-::-webkit-scrollbar {
-    width:2px;
-    height:2px;
+::-webkit-scrollbar{
+    width:6px;
+    height:6px;
     background:inherit;
 }
 
-::-webkit-scrollbar-thumb {
-    background:#555555;
+::-webkit-scrollbar-thumb{
+    width:2px;
+    height:2px;
+    border:2px solid #fff;
+    background:#555;
 }
 
 body{
     margin:0;
     padding:0;
     word-wrap:break-word;
-    font-family:consolas, monospace;
+    font-family:'Source Sans Pro',sans-serif;
     text-transform:uppercase;
     font-size:12px;
     color:#000;
@@ -42,66 +49,79 @@ a{
 }
 
 .bar{
-    text-align:left;
     position:fixed;
     top:0;
-    margin:0;
     margin:0 auto;
     width:calc(100% - 60px);
-    height:15px;
+    min-height:15px;
     z-index:9999!important;
-    font-size:12px;
     line-height:15px;
+    text-transform:uppercase;
     letter-spacing:2px;
     padding:15px 30px;
-    color:#ffffff;
-    background:#555555;
-    overflow:hidden;
+    color:#fff;
+    background:#555;
 }
 .bar a{
     display:inline-block;
     margin-bottom:8px;
     padding:0 6px 5px 8px;
-    border-bottom:1px solid #555555;
+    color:inherit;
+    border-bottom:1px solid #555;
     transition:0.5s ease;
 }
 .bar a:hover{
-    border-bottom:1px solid #ffffff;
+    border-bottom:1px solid #000;
+    opacity:0.5;
 }
 
 .links{
-    width:calc(100% - 350px);
-    padding:0;
+    width:calc(100% - 180px);
+    text-align:left;
 }
 
 .bar input[type=text]{
     position:absolute;
     top:12px;
-    right:200px;
+    right:30px;
     width:150px;
-    font-family:consolas, monospace;
     border:none;
-    font-size:12px;
+    font:inherit;
     text-transform:uppercase;
+    text-align:right;
     line-height:15px;
     padding:3px 10px;
-    background:#777777;
-    color:#ffffff;
+    background:none;
+    color:#000;
 }
 
 input::placeholder{
-    color:#ffffff;
+    color:#fff;
     letter-spacing:2px;
 }
+
 input:focus{
     outline:none;
+}
+
+.searchbutton, .menubutton{
+    position:absolute;
+    right:15px;
+    top:15px;
+    font-size:15px;
+    line-height:15px;
+    width:15px;
+    display:none;
+}
+.menubutton{
+    left:15px;
 }
 
 section{
     position:relative;
     top:45px;
     margin:0 auto;
-    width:900px;
+    width:930px;
     max-width:calc(100% - 80px);
     padding:40px 0;
 }
@@ -121,15 +141,10 @@ section{
 
 .group{
     max-width:200px;
-    width:33%;
-    min-width:100px;
+    width:calc(25% - 30px);
     float:left;
-    padding-bottom:30px;
-    margin-right:30px;
-}
-
-.group:last-of-type{
-    margin-right:0;
+    padding-bottom:20px;
+    margin:0 15px;
 }
 
 .cat{
@@ -142,25 +157,118 @@ ul{
     margin:0;
 }
 
-.group li{
+.group li, .sub{
+    text-transform:none;
     background:#fff;
     list-style-type:none;
     padding:10px;
-    margin-bottom:5px;
     transition:0.5s ease;
+    margin-bottom:5px;
 }
 
-.group li:hover{
+.sub{
+    margin-bottom:0;
+    margin-top:5px;
+}
+
+.sub:first-of-type{
+    margin-top:0;
+}
+
+.sub span{ font-size:8px; }
+
+.group li:hover, .sub:hover{
     cursor:pointer;
     background:#777;
     color:#fff;
+}
+
+.expand li{
+    margin-bottom:0;
+    padding:5px 10px;
+}
+
+.expand li:hover{
+    background:inherit;
+    color:#aaa;
+}
+
+.expand{
+    display:none;
+    background:#fff;
+    margin-bottom:5px;
+    padding-bottom:10px;
+}
+
+@media screen and (min-width:850px){
+    .min{ display:none!important; }
+    .bar{ max-height:15px; }
+}
+
+@media screen and (max-width:850px){
+    .links, .bar input[type=text]{
+        text-align:center;
+        display:none;
+    }
+    
+    .links{
+        width:100%;
+        margin-top:20px;
+    }
+    .links a{
+        width:100%;
+        margin:0;
+        padding:10px 0 0 0;
+        border-bottom:none;
+    }
+    .links a:hover{ border-bottom:none; }
+    
+    .bar input[type=text]{
+        width:calc(100% - 90px);
+        left:45px;
+        top:10px;
+        line-height:25px;
+        margin:0;
+        padding:0;
+    }
+    
+    .searchbutton, .menubutton{
+        display:block;
+        cursor:pointer;
+    }
+    
+    .mid{
+        color:#fff;
+        position:fixed;
+        font-size:16px;
+        letter-spacing:5px;
+        text-align:center;
+        width:80%;
+        left:10%;
+        top:15px;
+        z-index:9999;
+    }
+}
+
+@media screen and (max-width:800px){ .group{ width:calc(33% - 30px); } }
+
+@media screen and (max-width:600px){ .group{ width:calc(50% - 30px); } }
+
+@media screen and (max-width:400px){
+    .group{
+        width:100%;
+        max-width:100%;
+        display:block;
+        margin:0;
+    }
 }
 
 .tmblr-iframe{
     z-index:9999999!important;
     white-space:nowrap;
     position:fixed;
-    top:-5px!important;
+    top:45px!important;
+    right:-20px!important;
     transform:scale(0.8,0.8);
 }
 </style>
@@ -169,8 +277,10 @@ ul{
 
 <body>
 
-<div class="bar"><div class="links"><a href="\">home</a><a href="\ask">ask</a><a href="\archive">archive</a><a href="/info">about</a><a href="/tags">tags</a><a href="/videos">videos</a><a href="/photos">photos</a><a href="/gifs">gifs</a><a href="/interviews">interviews</a><a href="/news">news</a></div>
-<form action="/search" method="get"><input type="text" placeholder="Search..." name="q" value="{SearchQuery}" /></form>
+<div class="bar"><div class="menubutton"><span class="lnr lnr-menu"></span></div><div class="links"><a href="\">home</a><a href="\ask">ask</a><a href="\archive">archive</a><a href="/info">about</a><a href="/tags">tags</a><a href="/videos">videos</a><a href="/photos">photos</a><a href="/gifs">gifs</a><a href="/interviews">interviews</a><a href="/news">news</a></div>
+<form action="/search" method="get"><input type="text" placeholder="enter to search..." name="q" value="{SearchQuery}" /></form><div class="searchbutton"><span class="lnr lnr-magnifier"></span></div>
+</div>
+<div class="mid">{Title}</div>
 </div>
 
 <section>
@@ -197,24 +307,41 @@ ul{
 <span class="group">
 <div class="cat">programs</div>
 <ul>
-<a href="http://jin-boyang.tumblr.com/tagged/program%3A-crouching-tiger-hidden-dragon"><li>Crouching Tiger, Hidden Dragon (2017-18 SP)</li></a>
-<a href="http://jin-boyang.tumblr.com/tagged/program%3A-star-wars"><li>Star Wars (2017-18 FS)</li></a>
-<a href="http://jin-boyang.tumblr.com/tagged/program%3A-spiderman"><li>Spiderman&nbsp;(2016-17 SP)</li></a>
-<a href="http://jin-boyang.tumblr.com/tagged/program%3A-la-strada"><li>La Strada&nbsp;(2016-17 FS)</li></a>
-<a href="http://jin-boyang.tumblr.com/tagged/ex%3A-cowboy"><li>Cowboy&nbsp;(2016-17 EX)</li></a>
-<a href="http://jin-boyang.tumblr.com/tagged/programs%3A-tango-amore"><li>Tango Amore&nbsp;(2014-15, 2015-16 SP)</li></a>
-<a href="http://jin-boyang.tumblr.com/tagged/programs%3A-dragon-racing"><li>Dragon Racing&nbsp;(2014-15, 2015-16 FS)</li></a>
-<a href="http://jin-boyang.tumblr.com/tagged/ex%3A-chimes%2Ftechnologic"><li>Chimes/Technologic (2015-16 EX)</li></a>
-<li>La Bayadere (2013-14 SP)</li>
-<li>Charlie Chaplin Medley (2012-13, 2013-14 FS)</li>
-<li>Michael Jackson Medley (2012-13, 2013-14 EX)</li>
-<li>Chambermaid Swing (2012-13 SP)</li>
+
+<div class="sub" id="1718p"><span class="lnr lnr-chevron-down"></span>&nbsp; 2017-18</div>
+<div class="expand" id="1718p">
+<a href="http://jin-boyang.tumblr.com/tagged/program%3A-crouching-tiger-hidden-dragon"><li>SP: Crouching Tiger, Hidden Dragon</li></a>
+<a href="http://jin-boyang.tumblr.com/tagged/program%3A-star-wars"><li>FS: Star Wars</li></a>
+</div>
+
+<div class="sub" id="1617p"><span class="lnr lnr-chevron-down"></span>&nbsp; 2016-17</div>
+<div class="expand" id="1617p">
+<a href="http://jin-boyang.tumblr.com/tagged/program%3A-spiderman"><li>SP: Spiderman</li></a>
+<a href="http://jin-boyang.tumblr.com/tagged/program%3A-la-strada"><li>FS: La Strada</li></a>
+<a href="http://jin-boyang.tumblr.com/tagged/ex%3A-cowboy"><li>EX: Cowboy</li></a>
+</div>
+
+<div class="sub" id="1516p"><span class="lnr lnr-chevron-down"></span>&nbsp; 2015-16</div>
+<div class="expand" id="1516p">
+<a href="http://jin-boyang.tumblr.com/tagged/programs%3A-tango-amore"><li>SP: Tango Amore</li></a>
+<a href="http://jin-boyang.tumblr.com/tagged/programs%3A-dragon-racing"><li>FS: Dragon Racing</li></a>
+<a href="http://jin-boyang.tumblr.com/tagged/ex%3A-chimes%2Ftechnologic"><li>EX: Chimes/Technologic</li></a>
+</div>
 </ul>
 </span>
 
 <span class="group">
 <div class="cat">events</div>
 <ul>
+
+<div class="sub" id="1718e"><span class="lnr lnr-chevron-down"></span>&nbsp; 2017-18</div>
+<div class="expand" id="1718e">
+<a href="/tagged/skate-america-2017"><li>Skate America 2017</li></a>
+<a href="/tagged/coc-2017"><li>Cup of China 2017</li></a>
+</div>
+
+<div class="sub" id="1617e"><span class="lnr lnr-chevron-down"></span>&nbsp; 2016-17</div>
+<div class="expand" id="1617e">
 <a href="/tagged/wtt-2017"><li>World Team Trophy 2017</li></a>
 <a href="/tagged/worlds-2017"><li>World Championships 2017</li></a>
 <a href="/tagged/awg-2017"><li>Asian Winter Games 2017</li></a>
@@ -224,6 +351,10 @@ ul{
 <a href="http://jin-boyang.tumblr.com/tagged/skate-america-2016"><li>Skate America 2016</li></a>
 <a href="/tagged/shenzhen-ice-castle-opening"><li>Shenzhen Ice Castle Opening 2016</li></a>
 <a href="http://jin-boyang.tumblr.com/tagged/aoi-2016"><li>Amazing On Ice 2016</li></a>
+</div>
+
+<div class="sub" id="1516e"><span class="lnr lnr-chevron-down"></span>&nbsp; 2015-16</div>
+<div class="expand" id="1516e">
 <a href="http://jin-boyang.tumblr.com/tagged/tcc-2016"><li>Team Challenge Cup 2016</li></a>
 <a href="http://jin-boyang.tumblr.com/tagged/worlds-2016"><li>World Championships 2016</li></a>
 <a href="http://jin-boyang.tumblr.com/tagged/4cc-2016"><li>Four Continents Championships 2016</li></a>
@@ -231,6 +362,7 @@ ul{
 <a href="http://jin-boyang.tumblr.com/tagged/gpf-2015"><li>Grand Prix Final 2015</li></a>
 <a href="http://jin-boyang.tumblr.com/tagged/nhk-2015"><li>NHK Trophy 2015</li></a>
 <a href="http://jin-boyang.tumblr.com/tagged/coc-2015"><li>Cup of China 2015</li></a>
+</div>
 </ul>
 </span>
 
@@ -245,6 +377,35 @@ ul{
 </span>
 
 </section>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function(){
+    $(".searchbutton").click(function(){
+        $(".bar input").toggle();
+        $(".links").slideUp();
+        if($(".bar input").is(":visible")){
+            $(".mid").hide();
+        }
+        else{
+            $(".mid").show();
+        }
+    });
+    $(".menubutton").click(function(){
+        $(".links").slideToggle();
+        $("input").hide();
+    });
+    $("section").click(function(){
+        $(".links").slideUp();
+    })
+    
+    $(".sub").click(function(){
+        $(".expand").filter("#" + $(this).attr("id")).slideToggle();
+    });
+});
+</script>
 
 </body>
 
